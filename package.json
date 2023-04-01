@@ -1,0 +1,33 @@
+{
+  "name": "react-zero",
+  "version": "1.0.0",
+  "description": "this is learning curve for react",
+  "scripts": {
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaquibkhan/React-inception.git"
+  },
+  "author": "shaquib khan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaquibkhan/React-inception/issues"
+  },
+  "homepage": "https://github.com/shaquibkhan/React-inception#readme",
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
