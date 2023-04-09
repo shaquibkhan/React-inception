@@ -18,7 +18,8 @@
 }
 .res-card{
     width: 200px;
-    border: 1px solid black;
+    font-family: ProximaNova,arial,Helvetica Neue,sans-serif;
+    font-size: 13px;
     padding: 5px;
     margin: 5px;
 }
@@ -30,4 +31,20 @@
 }
 .res-image{
     width:195px;
+    height: 150px;
+}
+.shimmer-card{
+    background-color: lightgray;
+    width: 195px;
+    height: 150px;
+    margin: 20px;
+}
+.shimmer-body{
+    background-color: lightgray;
+    margin-top: 100px;
+    width: 100px;
+}
+.err{
+    color: brown;
+    font-size: larger;
 }

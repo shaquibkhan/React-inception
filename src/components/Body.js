@@ -2,9 +2,8 @@ import { useEffect, useState } from "react"
 import { restaurantData, CDN_URL } from "../utils/config"
 import Shimmer from "./Shimmer";
 
-function filterData(searchText, RestrauList) {
-  const copy = RestrauList;
-  const filter = copy.filter((res) => 
+function filterData(searchText, allRestraunats) {
+  const filter = allRestraunats.filter((res) => 
     res.data.name.includes(searchText)
   )
   return filter;
@@ -45,7 +44,7 @@ const Body = () => {
 console.log("render")
 
 
-  return allRestraunats.length === 0 ? <Shimmer/> : (
+  return filteredRestrauList.length === 0 ? <Shimmer/> : (
     <>
 
       <div className='body'>
@@ -60,19 +59,17 @@ console.log("render")
           />
           <button onClick={() => {
             const myData = filterData(searchText, allRestraunats);
-            console.log(myData);
-            setallRestraunats(myData);
+            setfilteredRestrauList(myData);
           }}>search</button>
 
         </div>
         <div className="filter">
           <button onClick={() => {
             const filterList = allRestraunats.filter((res) => res.data.avgRating > 4);
-            setRestrauList(filterList);
+            setfilteredRestrauList(filterList);
             console.log(filterList)
           }}>Top rated restaurants</button>
         </div>
-
         <div className='res-container'>
           {filteredRestrauList.map((restaurant) => (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
