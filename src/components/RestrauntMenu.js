@@ -1,28 +1,26 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CDN_URL } from "../utils/config";
+import Shimmer from "./Shimmer";
+import useRestraunt from "../utils/useRestraunt";
 
-const RestrauntMenu = ()=>{
+const RestrauntMenu = () => {
+    const { id } = useParams();
+    const restrauntDetail = useRestraunt(id)
 
-    const [restrauntDetail, setRestrauntDetail] = useState({})
-    useEffect(()=>{
-        getRestrauntInfo()
-    },[])
-    
-    async function getRestrauntInfo(){
-         const data = await fetch('https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.5952314&lng=85.08308040000001&restaurantId=598079&submitAction=ENTER');
-         const json = await data.json();
-         console.log(json.data);
-         setRestrauntDetail(json?.data?.cards[2]?.data?.data?.cards);
-    }
-    const {id} = useParams();
-    // const {id} = params;
-    // console.log(params);
-    return (
+    console.log("getRestrauntInfo");
+
+    // console.log(id);
+    return (!restrauntDetail) ? <Shimmer /> : (
         <>
-        <h1>Restraunt id - {id}</h1>
-        <h1>{restrauntDetail.name}</h1>
-        <img src={CDN_URL + restrauntDetail.cloudinaryImageId}></img>
+            <h1>Restraunt id - {restrauntDetail.id}</h1>
+            <h1>{restrauntDetail.name}</h1>
+            <img className="res-card" src={CDN_URL + restrauntDetail.cloudinaryImageId}></img>
+            <h3>{restrauntDetail.city}</h3>
+            <h3>{restrauntDetail.cuisines}</h3>
+
+            <h3>{restrauntDetail.costForTwo}</h3>
+            <h3>{restrauntDetail.avgRating} stars</h3>
         </>
     )
 }

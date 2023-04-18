@@ -8,6 +8,7 @@ import About from './components/About';
 import Error from './components/Error';
 import Contact from './components/Contact';
 import RestrauntMenu from './components/RestrauntMenu';
+import Profile from './components/Profile';
 // Config Driven UI 
 
 //  const confg = [
@@ -46,7 +47,13 @@ const myRouter = createBrowserRouter([
                   },
                   {
                         path: '/about',
-                        element: <About/>
+                        element: <About/>,
+                        children : [
+                              {
+                                    path: 'profile',
+                                    element: <Profile />
+                              }
+                        ]
                   },
                   {
                         path: '/contact',
