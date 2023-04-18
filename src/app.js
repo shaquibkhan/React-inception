@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/header';
 import Body from './components/body';
 import Footer from './components/footer';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import About from './components/About';
+// import About from './components/About';
 import Error from './components/Error';
 import Contact from './components/Contact';
 import RestrauntMenu from './components/RestrauntMenu';
 import Profile from './components/Profile';
+import Shimmer from './components/Shimmer';
+
 // Config Driven UI 
 
 //  const confg = [
@@ -24,7 +26,9 @@ import Profile from './components/Profile';
 //       ]
 //    }
 //  ]
-
+const About = lazy(() => import("./components/About"))
+const Instamart = lazy(() => import("./components/Instamart"))
+// On Demand Loading
 const Applayout = () => {
       return (
             <>
@@ -38,17 +42,21 @@ const Applayout = () => {
 const myRouter = createBrowserRouter([
       {
             path: '/',
-            element: <Applayout/>,
+            element: <Applayout />,
             errorElement: <Error />,
-            children : [
+            children: [
                   {
                         path: '/',
-                        element: <Body/>
+                        element: <Body />
                   },
                   {
                         path: '/about',
-                        element: <About/>,
-                        children : [
+                        element: (
+                              <Suspense>
+                                    <About />
+                              </Suspense>
+                        ),
+                        children: [
                               {
                                     path: 'profile',
                                     element: <Profile />
@@ -57,17 +65,25 @@ const myRouter = createBrowserRouter([
                   },
                   {
                         path: '/contact',
-                        element: <Contact/>
+                        element: <Contact />
                   },
                   {
                         path: '/:id',
                         element: <RestrauntMenu />
                   },
+                  {
+                        path: '/instamart',
+                        element: (
+                              <Suspense fallback={<Shimmer />}>
+                                    <Instamart />
+                              </Suspense>
+                        )
+                  },
             ]
       },
-     
-      
+
+
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider  router={myRouter}/>);
+root.render(<RouterProvider router={myRouter} />);

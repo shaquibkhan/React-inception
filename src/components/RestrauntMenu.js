@@ -7,7 +7,6 @@ import useRestraunt from "../utils/useRestraunt";
 const RestrauntMenu = () => {
     const { id } = useParams();
     const restrauntDetail = useRestraunt(id)
-
     console.log("getRestrauntInfo");
 
     // console.log(id);

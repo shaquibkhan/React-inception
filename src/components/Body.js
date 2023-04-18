@@ -2,15 +2,8 @@ import { useEffect, useState } from "react"
 import { restaurantData, CDN_URL } from "../utils/config"
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-
-
-function filterData(searchText, allRestraunats) {
-  const filter = allRestraunats.filter((res) => 
-    res.data.name.includes(searchText)
-  )
-  return filter;
-}
+import useOnline from "../utils/useOnline";
+import filterData from "../utils/helper";
 
 const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating, costForTwo, deliveryTime }) => {
   // const {} = restaurant.data;
@@ -45,8 +38,11 @@ const Body = () => {
     setfilteredRestrauList(json?.data?.cards[2]?.data?.data?.cards);
   }
 // console.log("render")
+ const offline = useOnline();
 
-
+ if(!offline){
+  return <h1>Offline, please check your internet connection !!!</h1>
+ }
   return filteredRestrauList.length === 0 ? <Shimmer/> : (
     <>
 
