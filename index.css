@@ -48,6 +48,12 @@
     color: brown;
     font-size: larger;
 }
-.avatar-img{
-    
+.insta{
+    border-style:solid ;
+    /* padding-bottom: 2px; */
+    margin-bottom: 6px;
+    padding: 8px;
+}
+.insta-title{
+    font-weight: bolder;
 }

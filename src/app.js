@@ -10,7 +10,8 @@ import Contact from './components/Contact';
 import RestrauntMenu from './components/RestrauntMenu';
 import Profile from './components/Profile';
 import Shimmer from './components/Shimmer';
-
+const About = lazy(() => import("./components/About"))
+const Instamart = lazy(() => import("./components/Instamart"))
 // Config Driven UI 
 
 //  const confg = [
@@ -26,8 +27,7 @@ import Shimmer from './components/Shimmer';
 //       ]
 //    }
 //  ]
-const About = lazy(() => import("./components/About"))
-const Instamart = lazy(() => import("./components/Instamart"))
+
 // On Demand Loading
 const Applayout = () => {
       return (
