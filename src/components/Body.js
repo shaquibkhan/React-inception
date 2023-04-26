@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
-import { restaurantData, CDN_URL } from "../utils/config"
+import { CDN_URL } from "../utils/config"
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import filterData from "../utils/helper";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating, costForTwo, deliveryTime }) => {
   // const {} = restaurant.data;
+  const {user} = useContext(UserContext)
   return (
     <div className='res-card'>
       <img className='res-image' src={CDN_URL + cloudinaryImageId}></img>
@@ -15,6 +18,7 @@ const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating, costForT
       <h4>{avgRating}</h4>
       <h4>INR{costForTwo / 100} for two</h4>
       <h4>{deliveryTime} minutes</h4>
+      <span>{user.name}</span>
     </div>
   )
 }

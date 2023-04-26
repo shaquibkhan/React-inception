@@ -1,6 +1,6 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import Header from './components/header';
+import Header from './components/Header';
 import Body from './components/body';
 import Footer from './components/footer';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import RestrauntMenu from './components/RestrauntMenu';
 import Profile from './components/Profile';
 import Shimmer from './components/Shimmer';
+import UserContext from './utils/UserContext';
 const About = lazy(() => import("./components/About"))
 const Instamart = lazy(() => import("./components/Instamart"))
 // Config Driven UI 
@@ -30,10 +31,16 @@ const Instamart = lazy(() => import("./components/Instamart"))
 
 // On Demand Loading
 const Applayout = () => {
+      const [user, setUser] = useState({
+            name: "Shaquib Ahmad Khan",
+            email: "connectshaquib@gmail.com"
+      })
       return (
             <>
+            <UserContext.Provider value={{user: user}}>
                   <Header />
                   <Outlet />
+                  </UserContext.Provider>
                   <Footer />
             </>
       )

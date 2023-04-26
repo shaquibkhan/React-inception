@@ -17,7 +17,6 @@ const RestrauntMenu = () => {
             <img className="res-card" src={CDN_URL + restrauntDetail.cloudinaryImageId}></img>
             <h3>{restrauntDetail.city}</h3>
             <h3>{restrauntDetail.cuisines}</h3>
-
             <h3>{restrauntDetail.costForTwo}</h3>
             <h3>{restrauntDetail.avgRating} stars</h3>
         </>

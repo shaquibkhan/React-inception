@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
+
+
 const Title = () => {
    return <img className='logo-img' alt='img-logo' src='https://img.freepik.com/premium-vector/chef-food-restaurant-logo_7085-179.jpg'></img>
 }
@@ -9,12 +12,14 @@ const Title = () => {
 const Header = () => {
    const [isLoggedIn, setIsLoggedIn] = useState(false);
    const showOnline = useOnline()
-
+   const {user} = useContext(UserContext)
    return (
       <div className='header'>
          <Title />
          <div className='nav-items'>
+           
             {showOnline ? "✔️" : "❎"}
+            <span className="user">{user.name}</span>
             {
                (isLoggedIn === true) ? <button onClick={() => setIsLoggedIn(false)}>Log Out</button> : <button onClick={() => setIsLoggedIn(true)}>Log In</button>
             }
