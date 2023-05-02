@@ -11,6 +11,9 @@ import RestrauntMenu from './components/RestrauntMenu';
 import Profile from './components/Profile';
 import Shimmer from './components/Shimmer';
 import UserContext from './utils/UserContext';
+import { Provider } from 'react-redux';
+import store from './utils/store';
+
 const About = lazy(() => import("./components/About"))
 const Instamart = lazy(() => import("./components/Instamart"))
 // Config Driven UI 
@@ -37,11 +40,13 @@ const Applayout = () => {
       })
       return (
             <>
+            <Provider store={store}>
             <UserContext.Provider value={{user: user}}>
                   <Header />
                   <Outlet />
                   </UserContext.Provider>
                   <Footer />
+                  </Provider>
             </>
       )
 }
